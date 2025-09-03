@@ -1,2 +1,0 @@
-# diogoxadrez
-Código Diogo

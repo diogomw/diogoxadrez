@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+#define SIZE 8
+
+char board[SIZE][SIZE];
+
+//Baseado no código novato Inicializa tabuleiro vazio
+void initBoard() {
+    for(int i=0;i<SIZE;i++) {
+        for(int j=0;j<SIZE;j++) {
+            board[i][j] = ' ';
+        }
+    }
+}
+
+// Mostra o tabuleiro de xadrez 8x8 
+void printBoard() {
+    printf("   a b c d e f g h\n");
+    for(int i=0;i<SIZE;i++) {
+        printf("%d ", SIZE-i);
+        for(int j=0;j<SIZE;j++) {
+            printf("|%c", board[i][j]);
+        }
+        printf("|\n");
+    }
+    printf("   a b c d e f g h\n\n");
+}
+
+// Move uma peça de (x,y) para (nx,ny)
+void movePiece(int x,int y,int nx,int ny) {
+    board[nx][ny] = board[x][y];
+    board[x][y] = ' ';
+}
+
+int main() {
+    initBoard();
+
+    // Colocar peças iniciais
+    board[7][2] = 'B'; // Bispo branco em c1
+    board[7][0] = 'R'; // Torre branca em a1
+    board[7][3] = 'Q'; // Rainha branca em d1
+
+    printf("Tabuleiro inicial:\n");
+    printBoard();
+
+    // Bispo anda 5 casas na diagonal superior direita
+    movePiece(7,2, 2,7);
+
+    // Torre anda 5 casas para a direita
+    movePiece(7,0, 7,5);
+
+    // Rainha anda 8 casas para a esquerda (na prática até a coluna 'a')
+    movePiece(7,3, 7,3-3); // 3 casas até coluna 0 (a1)
+
+    printf("Depois dos movimentos:\n");
+    printBoard();
+
+    return 0;
+}
